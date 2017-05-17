@@ -1,21 +1,22 @@
+function getNSidedPyramid(sidecount) {
+    var tip = seen.P(0,2,0)
+    var bottom = [];
+    for (var i = 0; i < sidecount; i++) {
+        var angle = i * Math.PI * 2.0 / sidecount;
+        bottom.push(seen.P(Math.cos(angle), 0, Math.sin(angle)));
+    }
+    var sides = []
+    for (var i = 0; i < sidecount; i++) {
+        sides.push(new seen.Surface([bottom[(i + 1) % sidecount], bottom[i], tip]));
+    }
+    sides.push(new seen.Surface(bottom));
+    return sides;
+}
+
 var width = 600;
 var height = 600;
 
-var sidecount = 9;
-
-var tip = seen.P(0,2,0)
-var bottom = [];
-for (var i = 0; i < sidecount; i++) {
-	var angle = i * Math.PI * 2.0 / sidecount;
-	bottom.push(seen.P(Math.cos(angle), 0, Math.sin(angle)));
-}
-var sides = []
-for (var i = 0; i < sidecount; i++) {
-	sides.push(new seen.Surface([bottom[(i + 1) % sidecount], bottom[i], tip]));
-}
-sides.push(new seen.Surface(bottom));
-
-var shape = new seen.Shape("terejaistuge", sides).scale(height * 0.2);
+var shape = new seen.Shape("terejaistuge", getNSidedPyramid(7)).scale(height * 0.2);
 //var unitcube = seen.Shapes.unitcube().scale(height * 0.2);
 
 //seen.Colors.randomSurfaces2(shape);
