@@ -16,10 +16,22 @@ function getNSidedPyramid(sidecount) {
 var width = 600;
 var height = 600;
 
+var overlaysurface = new seen.Surface([seen.P(0,2,0),seen.P(1,0,0),seen.P(0,0,0)]).stroke(new seen.Color(192, 57, 43, 255))
+overlaysurface.fillMaterial = null;
+overlaysurface["stroke-width"] = 4;
+
 var shape = new seen.Shape("terejaistuge", getNSidedPyramid(7)).scale(height * 0.2);
+var overlayshape = new seen.Shape("pealminek", [overlaysurface]).scale(height * 0.2);
 //var unitcube = seen.Shapes.unitcube().scale(height * 0.2);
 
 //seen.Colors.randomSurfaces2(shape);
+
+var overlayscene = new seen.Scene({
+	model: seen.Models.default().add(overlayshape),//.add(unitcube),
+	viewport: seen.Viewports.center(width, height),
+	shader: seen.Shaders.flat(),
+    cullBackfaces: false
+});
 
 var scene = new seen.Scene({
 	model: seen.Models.default().add(shape),//.add(unitcube),
@@ -27,7 +39,12 @@ var scene = new seen.Scene({
 	shader: seen.Shaders.diffuse()
 });
 
-var context = seen.Context("seen-canvas", scene).render();
+var context = seen.Context("seen-canvas")
+context.sceneLayer(scene);
+context.sceneLayer(overlayscene);
+context.ctx.lineCap = "round";
+context.ctx.lineJoin = "round";
+context.render();
 
 var dragger = new seen.Drag("seen-canvas", {
 	inertia: true
@@ -37,6 +54,7 @@ dragger.on("drag.rotate", function(e) {
 	var ref;
 	var xform = (ref = seen.Quaternion).xyToTransform.apply(ref, e.offsetRelative);
 	shape.transform(xform);
+    overlayshape.transform(xform);
 	//unitcube.transform(xform);
 	return context.render();
 });
