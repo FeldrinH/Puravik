@@ -1,9 +1,9 @@
 function getNSidedPyramid(sidecount) {
-    var tip = seen.P(0,2,0)
+    var tip = seen.P(0,1,0)
     var bottom = [];
     for (var i = 0; i < sidecount; i++) {
         var angle = i * Math.PI * 2.0 / sidecount;
-        bottom.push(seen.P(Math.cos(angle), 0, Math.sin(angle)));
+        bottom.push(seen.P(Math.cos(angle), -0.5, Math.sin(angle)));
     }
     var sides = []
     for (var i = 0; i < sidecount; i++) {
@@ -13,15 +13,19 @@ function getNSidedPyramid(sidecount) {
     return sides;
 }
 
-var width = 600;
-var height = 600;
 
-var overlaysurface = new seen.Surface([seen.P(0,2,0),seen.P(1,0,0),seen.P(0,0,0)]).stroke(new seen.Color(192, 57, 43, 255))
+var width = document.getElementById("seen-canvas").clientWidth;
+var height = document.getElementById("seen-canvas").clientHeight;
+document.getElementById("seen-canvas").width = width;
+document.getElementById("seen-canvas").height = height;
+
+
+var overlaysurface = new seen.Surface([seen.P(0,1,0),seen.P(1,-0.5,0),seen.P(0,-0.5,0)]).stroke(new seen.Color(192, 57, 43, 255))
 overlaysurface.fillMaterial = null;
 overlaysurface["stroke-width"] = 4;
 
-var shape = new seen.Shape("terejaistuge", getNSidedPyramid(7)).scale(height * 0.2);
-var overlayshape = new seen.Shape("pealminek", [overlaysurface]).scale(height * 0.2);
+var shape = new seen.Shape("terejaistuge", getNSidedPyramid(7)).scale(height * 0.3);
+var overlayshape = new seen.Shape("pealminek", [overlaysurface]).scale(height * 0.3);
 //var unitcube = seen.Shapes.unitcube().scale(height * 0.2);
 
 //seen.Colors.randomSurfaces2(shape);
