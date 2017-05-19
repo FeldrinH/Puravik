@@ -14,10 +14,10 @@ function getNSidedPyramid(sidecount) {
 }
 
 var ratio = (function() {
-    var seencontext = document.getElementById("seen-canvas").getContext("2d");
-    var devicePixelRatio = window.devicePixelRatio || 1;
-    var backingStoreRatio = seencontext.webkitBackingStorePixelRatio || seencontext.mozBackingStorePixelRatio || seencontext.msBackingStorePixelRatio || seencontext.oBackingStorePixelRatio || seencontext.backingStorePixelRatio || 1;
-    return devicePixelRatio / backingStoreRatio;
+	var seencontext = document.getElementById("seen-canvas").getContext("2d");
+	var devicePixelRatio = window.devicePixelRatio || 1;
+	var backingStoreRatio = seencontext.webkitBackingStorePixelRatio || seencontext.mozBackingStorePixelRatio || seencontext.msBackingStorePixelRatio || seencontext.oBackingStorePixelRatio || seencontext.backingStorePixelRatio || 1;
+	return devicePixelRatio / backingStoreRatio;
 })();
 var width = document.getElementById("seen-canvas").clientWidth * ratio;
 var height = document.getElementById("seen-canvas").clientHeight * ratio;
@@ -38,7 +38,7 @@ var overlayscene = new seen.Scene({
 	model: seen.Models.default().add(overlayshape),//.add(unitcube),
 	viewport: seen.Viewports.center(width, height),
 	shader: seen.Shaders.flat(),
-    cullBackfaces: false
+	cullBackfaces: false
 });
 
 var scene = new seen.Scene({
@@ -62,7 +62,7 @@ dragger.on("drag.rotate", function(e) {
 	var ref;
 	var xform = (ref = seen.Quaternion).xyToTransform.apply(ref, e.offsetRelative);
 	shape.transform(xform);
-    overlayshape.transform(xform);
+	overlayshape.transform(xform);
 	//unitcube.transform(xform);
 	return context.render();
 });
