@@ -13,8 +13,14 @@ function getNSidedPyramid(sidecount) {
 	return sides;
 }
 
-var width = document.getElementById("seen-canvas").clientWidth;
-var height = document.getElementById("seen-canvas").clientHeight;
+var ratio = (function() {
+    var seencontext = document.getElementById("seen-canvas").getContext("2d");
+    var devicePixelRatio = window.devicePixelRatio || 1;
+    var backingStoreRatio = seencontext.webkitBackingStorePixelRatio || seencontext.mozBackingStorePixelRatio || seencontext.msBackingStorePixelRatio || seencontext.oBackingStorePixelRatio || seencontext.backingStorePixelRatio || 1;
+    return devicePixelRatio / backingStoreRatio;
+})();
+var width = document.getElementById("seen-canvas").clientWidth * ratio;
+var height = document.getElementById("seen-canvas").clientHeight * ratio;
 document.getElementById("seen-canvas").width = width;
 document.getElementById("seen-canvas").height = height;
 
