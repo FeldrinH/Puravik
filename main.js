@@ -1,26 +1,24 @@
 function getNSidedPyramid(sidecount) {
-    var tip = seen.P(0,1,0)
-    var bottom = [];
-    for (var i = 0; i < sidecount; i++) {
-        var angle = i * Math.PI * 2.0 / sidecount;
-        bottom.push(seen.P(Math.cos(angle), -0.5, Math.sin(angle)));
-    }
-    var sides = []
-    for (var i = 0; i < sidecount; i++) {
-        sides.push(new seen.Surface([bottom[(i + 1) % sidecount], bottom[i], tip]));
-    }
-    sides.push(new seen.Surface(bottom));
-    return sides;
+	var tip = seen.P(0,1,0);
+	var bottom = [];
+	for (var i = 0; i < sidecount; i++) {
+		var angle = i * Math.PI * 2.0 / sidecount;
+		bottom.push(seen.P(Math.cos(angle), -0.5, Math.sin(angle)));
+	}
+	var sides = [];
+	for (var i = 0; i < sidecount; i++) {
+		sides.push(new seen.Surface([bottom[(i + 1) % sidecount], bottom[i], tip]));
+	}
+	sides.push(new seen.Surface(bottom));
+	return sides;
 }
-
 
 var width = document.getElementById("seen-canvas").clientWidth;
 var height = document.getElementById("seen-canvas").clientHeight;
 document.getElementById("seen-canvas").width = width;
 document.getElementById("seen-canvas").height = height;
 
-
-var overlaysurface = new seen.Surface([seen.P(0,1,0),seen.P(1,-0.5,0),seen.P(0,-0.5,0)]).stroke(new seen.Color(192, 57, 43, 255))
+var overlaysurface = new seen.Surface([seen.P(0,1,0),seen.P(1,-0.5,0),seen.P(0,-0.5,0)]).stroke(new seen.Color(192, 57, 43, 255));
 overlaysurface.fillMaterial = null;
 overlaysurface["stroke-width"] = 4;
 
@@ -43,7 +41,7 @@ var scene = new seen.Scene({
 	shader: seen.Shaders.diffuse()
 });
 
-var context = seen.Context("seen-canvas")
+var context = seen.Context("seen-canvas");
 context.sceneLayer(scene);
 context.sceneLayer(overlayscene);
 context.ctx.lineCap = "round";
