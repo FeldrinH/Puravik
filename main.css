@@ -1,0 +1,11 @@
+.main-canvas {
+    width: 100%;
+    height: calc(100% - 32px);
+    touch-action: none;
+}
+
+@media screen and (orientation:portrait) {
+    .main-canvas{
+        height: 50%
+    }
+}
