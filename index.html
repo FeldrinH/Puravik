@@ -20,9 +20,19 @@
 		<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 			<form action="#">
 				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<input class="mdl-textfield__input" value="7" onchange="if(this.checkValidity()) {updatePyramid(this.value)}" type="number" pattern="[0-9]*" id="numOfSides">
+					<input class="mdl-textfield__input" value="7" onchange="if(this.checkValidity()) {window.sidecount = parseInt(this.value); updatePyramid();}" type="text" pattern="[0-9]*" id="numOfSides">
 					<label class="mdl-textfield__label" for="numOfSides">Külgede arv</label>
 					<span class="mdl-textfield__error">Sisend pole positiivne täisarv!</span>
+				</div>
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<input class="mdl-textfield__input" value="1.5" onchange="if(this.checkValidity()) {window.height = parseFloat(this.value); updatePyramid();}" type="text" pattern="[0-9]*(\.[0-9]+)?" id="height">
+					<label class="mdl-textfield__label" for="height">Kõrgus</label>
+					<span class="mdl-textfield__error">Sisend pole arv!</span>
+				</div>
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<input class="mdl-textfield__input" value="1" onchange="if(this.checkValidity()) {window.apothem = parseFloat(this.value); updatePyramid();}" type="text" pattern="[0-9]*(\.[0-9]+)?" id="apothem">
+					<label class="mdl-textfield__label" for="apothem">Apoteem</label>
+					<span class="mdl-textfield__error">Sisend pole arv!</span>
 				</div>
 			</form>
 		</div>
