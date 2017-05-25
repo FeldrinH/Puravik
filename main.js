@@ -13,6 +13,12 @@ function getNSidedPyramid(sidecount) {
 	return sides;
 }
 
+function updatePyramid(sidecount) {
+	shape = new seen.Shape("terejaistuge", getNSidedPyramid(parseInt(sidecount))).scale(height * 0.3);
+	scene.model.children[0] = shape;
+	context.render()
+}
+
 var ratio = (function() {
 	var seencontext = document.getElementById("seen-canvas").getContext("2d");
 	var devicePixelRatio = window.devicePixelRatio || 1;
@@ -35,7 +41,7 @@ var overlayshape = new seen.Shape("pealminek", [overlaysurface]).scale(height * 
 //seen.Colors.randomSurfaces2(shape);
 
 var overlayscene = new seen.Scene({
-	model: seen.Models.default().add(overlayshape),//.add(unitcube),
+	model: seen.Models.default().add(overlayshape),
 	viewport: seen.Viewports.center(width, height),
 	shader: seen.Shaders.flat(),
 	cullBackfaces: false
@@ -61,8 +67,8 @@ var dragger = new seen.Drag("seen-canvas", {
 dragger.on("drag.rotate", function(e) {
 	var ref;
 	var xform = (ref = seen.Quaternion).xyToTransform.apply(ref, e.offsetRelative);
-	shape.transform(xform);
-	overlayshape.transform(xform);
+	scene.model.transform(xform);
+	overlayscene.model.transform(xform);
 	//unitcube.transform(xform);
 	return context.render();
 });

@@ -20,8 +20,8 @@
 		<div class="mdl-cell mdl-cell--6-col mdl-cell--8-col-tablet">
 			<form action="#">
 				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<input class="mdl-textfield__input" type="number" pattern="[0-9]*" id="sample4">
-					<label class="mdl-textfield__label" for="sample4">Külgede arv</label>
+					<input class="mdl-textfield__input" value="7" onchange="if(this.checkValidity()) {updatePyramid(this.value)}" type="number" pattern="[0-9]*" id="numOfSides">
+					<label class="mdl-textfield__label" for="numOfSides">Külgede arv</label>
 					<span class="mdl-textfield__error">Sisend pole positiivne täisarv!</span>
 				</div>
 			</form>
