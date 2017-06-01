@@ -30,9 +30,27 @@
 					<span class="mdl-textfield__error">Sisend pole arv!</span>
 				</div>
 				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					<input class="mdl-textfield__input" value="1" onchange="if(this.checkValidity()) {window.apothem = parseFloat(this.value); updatePyramid();}" type="text" pattern="[0-9]*(\.[0-9]+)?" id="apothem">
-					<label class="mdl-textfield__label" for="apothem">Apoteem</label>
+					<input class="mdl-textfield__input" value="1" onchange="if(this.checkValidity()) {window.baseapothem = parseFloat(this.value); updatePyramid();}" type="text" pattern="[0-9]*(\.[0-9]+)?" id="baseapothem">
+					<label class="mdl-textfield__label" for="baseapothem">Põhja apoteem</label>
 					<span class="mdl-textfield__error">Sisend pole arv!</span>
+				</div>
+				<div class="mdl-menu__item--full-bleed-divider" style="margin-top: 8px; margin-bottom: 18px">
+				</div>
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<input class="mdl-textfield__input" value="50" onchange="if(this.checkValidity()) {window.area = parseFloat(this.value); updatePyramid();}" type="text" pattern="[0-9]*(\.[0-9]+)?" id="area" disabled>
+					<label class="mdl-textfield__label" for="area">Pindala</label>
+					<span class="mdl-textfield__error">Sisend pole arv!</span>
+				</div>
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<input class="mdl-textfield__input" value="50" onchange="if(this.checkValidity()) {window.volume = parseFloat(this.value); updatePyramid();}" type="text" pattern="[0-9]*(\.[0-9]+)?" id="volume" disabled>
+					<label class="mdl-textfield__label" for="volume">Ruumala</label>
+					<span class="mdl-textfield__error">Sisend pole arv!</span>
+				</div>
+				<div>
+					<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="ruutjuur">
+						<input type="checkbox" id="ruutjuur" class="mdl-checkbox__input" checked>
+						<span class="mdl-checkbox__label">Ruutjuurtega vastused</span>
+					</label>
 				</div>
 			</form>
 		</div>
